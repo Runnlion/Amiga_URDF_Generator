@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot name="robot_with_wheels">
+
+  <link name="world"/>
+
+  <!-- Define origin for the world frame -->
+  <joint name="world_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+    <parent link="world"/>
+    <child link="smartfork1"/> 
+  </joint>
+
+  <link name="wheel1">
+    <visual>
+      <origin xyz="0 0.395 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://amiga_ros/amiga_description/smartfork_tire.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <mesh filename="package://amiga_ros/amiga_description/smartfork_tire.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision> -->
+  </link>
+
+  <link name="smartfork1">
+    <visual>
+      <geometry>
+        <mesh filename="package://amiga_ros/amiga_description/smartfork.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://amiga_ros/amiga_description/smartfork.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel1_joint" type="continuous">
+    <parent link="smartfork1"/>
+    <child link="wheel1"/>
+    <origin xyz="0 -0.395 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="right_leg">
+    <visual>
+      <geometry>
+        <box size="0.6 0.1 0.2"/>
+      </geometry>
+    </visual>
+  </link>
+
+</robot>
